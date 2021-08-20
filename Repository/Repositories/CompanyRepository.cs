@@ -37,10 +37,10 @@ namespace BL.Repositories
 
         public IEnumerable<Employee> GetEmployeesIn(string companyName)
         {
-          var companyId=  appDbContext.Companies.FirstOrDefault(c => c.CompanyName.ToLower() == companyName.ToLower()).Id;
-            if (companyId != 0)
+          var companyId=  appDbContext.Companies.FirstOrDefault(c => c.CompanyName.ToLower() == companyName.ToLower());
+            if (companyId != null)
             {
-                var employees = appDbContext.Employees.Where(d => d.CompanyId == companyId).ToList();
+                var employees = appDbContext.Employees.Where(d => d.CompanyId == companyId.Id).ToList();
                 return employees;
             }
             else
